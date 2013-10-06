@@ -72,7 +72,7 @@ void akm_init(void)
 	 */
 	if(!akm_sanity_check(akm_device_chips, device_chips_count))
 	{
-		LOGE("Sanity check failed.\n");
+		ALOGE("Sanity check failed.\n");
 		return;
 	}
 
@@ -125,7 +125,7 @@ int akm_sanity_check(struct akm_chip_sensors *device_chips[], int device_chips_c
 			 */
 			if(check & t)
 			{
-				LOGE("Sensor type %d is already registered on the device.\n");
+				ALOGE("Sensor type %d is already registered on the device.\n");
 				rc=0;
 				break;
 			}
@@ -158,7 +158,7 @@ struct akm_sensor *akm_get_sensor(struct akm_chip_sensors *device_chips[], int d
 				return device_chips[i]->sensors[j];
 
 	/* If nothing was returned, print an error and return NULL. */
-	LOGE("Failed to get the asked sensor (%d)\n", sensor_type);
+	ALOGE("Failed to get the asked sensor (%d)\n", sensor_type);
 
 	return (struct akm_sensor *) NULL;
 }

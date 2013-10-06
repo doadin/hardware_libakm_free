@@ -42,7 +42,7 @@ int akm8973_init(struct akm_chip_sensors *chip)
 	fd=open(chip->device_name, O_RDWR);
 	if(fd < 0)
 	{
-		LOGE("Error while opening chip device: %s.\n", strerror(errno));
+		ALOGE("Error while opening chip device: %s.\n", strerror(errno));
 		return 1;
 	}
 
@@ -66,7 +66,7 @@ int akm8973_deinit(struct akm_chip_sensors *chip)
 
 	if(chip->fd < 0)
 	{
-		LOGE("Error while closing chip device: negative fd.\n");
+		ALOGE("Error while closing chip device: negative fd.\n");
 		return 1;
 	}
 
@@ -137,35 +137,35 @@ int akm8973_publisher_init(struct akm_chip_sensors *chip)
 	fd=open(chip->publisher->input_node_name, O_RDWR);
 	if(fd < 0)
 	{
-		LOGE("Error while opening uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while opening uinput device: %s.\n", strerror(errno));
 		return 1;
 	}
 
 	/* Configure all that we're gonna need to publish data. */
 	if(ioctl(fd, UI_SET_EVBIT, EV_REL) < 0)
 	{
-		LOGE("Error while configuring uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while configuring uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
 
 	if(ioctl(fd, UI_SET_RELBIT, REL_X) < 0)
 	{
-		LOGE("Error while configuring uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while configuring uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
 
 	if(ioctl(fd, UI_SET_RELBIT, REL_Y) < 0)
 	{
-		LOGE("Error while configuring uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while configuring uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
 
 	if(ioctl(fd, UI_SET_RELBIT, REL_Z) < 0)
 	{
-		LOGE("Error while configuring uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while configuring uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
@@ -173,14 +173,14 @@ int akm8973_publisher_init(struct akm_chip_sensors *chip)
 	/* Write the uinput device to the node and ask to create the input. */
 	if(write(fd, &uinput_dev, sizeof(uinput_dev)) < 0)
 	{
-		LOGE("Error while writing uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while writing uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
 
 	if(ioctl(fd, UI_DEV_CREATE) < 0)
 	{
-		LOGE("Error while creating uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while creating uinput device: %s.\n", strerror(errno));
 		chip->publisher->deinit(chip);	
 		return 1;
 	}
@@ -204,12 +204,12 @@ int akm8973_publisher_deinit(struct akm_chip_sensors *chip)
 	/* Ask to destroy the input node and close the file descriptor. */
 	if(ioctl(chip->publisher->fd, UI_DEV_DESTROY) < 0)
 	{
-		LOGE("Error while destroying uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while destroying uinput device: %s.\n", strerror(errno));
 	}
 
 	if(close(chip->publisher->fd) < 0)
 	{
-		LOGE("Error while closing uinput device: %s.\n", strerror(errno));
+		ALOGE("Error while closing uinput device: %s.\n", strerror(errno));
 		return 1;
 	}
 

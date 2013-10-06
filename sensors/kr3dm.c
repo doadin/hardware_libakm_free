@@ -44,7 +44,7 @@ int kr3dm_init(struct akm_chip_sensors *chip)
 	fd=open(chip->device_name, O_RDWR);
 	if(fd < 0)
 	{
-		LOGE("Error while opening chip device: %s.\n", strerror(errno));
+		ALOGE("Error while opening chip device: %s.\n", strerror(errno));
 		return 1;
 	}
 
@@ -66,7 +66,7 @@ int kr3dm_deinit(struct akm_chip_sensors *chip)
 
 	if(chip->fd < 0)
 	{
-		LOGE("Error while closing chip device: negative fd.\n");
+		ALOGE("Error while closing chip device: negative fd.\n");
 		return 1;
 	}
 
@@ -96,7 +96,7 @@ void *kr3d_data_get_thread(void *chip_p)
 	{
 		if(chip->publisher->init(chip) != 0)
 		{
-			LOGE("publisher init failed, aborting\n");
+			ALOGE("publisher init failed, aborting\n");
 			goto exit;
 		}
 	}
@@ -120,7 +120,7 @@ void *kr3d_data_get_thread(void *chip_p)
 		/* ioctl call to get the data from the device. */
 		if(ioctl(chip->fd, KR3DM_IOCTL_READ_ACCEL_XYZ, &data) < 0)
 		{
-			LOGE("ioctl failed, aborting: %s\n", strerror(errno));
+			ALOGE("ioctl failed, aborting: %s\n", strerror(errno));
 			goto exit;
 		}
 
@@ -169,7 +169,7 @@ int kr3d_set_delay(struct akm_sensor *sensor_info, uint64_t delay)
 
 	if(rc < 0)
 	{
-		LOGE("ioctl failed, aborting: %s\n", strerror(errno));
+		ALOGE("ioctl failed, aborting: %s\n", strerror(errno));
 		return 1;
 	}
 

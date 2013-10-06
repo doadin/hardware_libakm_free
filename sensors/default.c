@@ -37,7 +37,7 @@ int default_enable(struct akm_sensor *sensor)
 	/* Skip if the sensor is already enabled. */
 	if(sensor->enabled)
 	{
-		LOGV("%s already enabled.\n", SENSOR_NAME);
+		ALOGV("%s already enabled.\n", SENSOR_NAME);
 		return 0;
 	}
 
@@ -55,7 +55,7 @@ int default_disable(struct akm_sensor *sensor)
 	/* Skip if the sensor is already disabled. */
 	if(!sensor->enabled)
 	{
-		LOGV("%s already disabled.\n", SENSOR_NAME);
+		ALOGV("%s already disabled.\n", SENSOR_NAME);
 		return 0;
 	}
 
