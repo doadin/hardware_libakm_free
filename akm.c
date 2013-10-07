@@ -45,6 +45,18 @@ struct akm_chip_sensors *akm_device_chips[]=
 
 #endif
 
+/* Device configuration for ancora (GSamsung Galaxy W). */
+#ifdef TARGET_DEVICE_ANCORA
+#undef TARGET_DEFAULT
+
+struct akm_chip_sensors *akm_device_chips[]=
+{
+	&bma,
+	&akm8973
+};
+
+#endif
+
 /* Default device configuration, used when the target is not specified. */
 #ifdef TARGET_DEFAULT
 

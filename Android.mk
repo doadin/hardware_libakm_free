@@ -27,6 +27,7 @@ LOCAL_SRC_FILES := akm.c \
     sensors/default.c \
     sensors/akm8973.c \
     sensors/kr3dm.c \
+    sensors/bma.c \
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
 LOCAL_CFLAGS := -DLOG_TAG=\"libakm_free\"
@@ -39,6 +40,10 @@ LOCAL_MODULE_TAGS := optional
 
 ifeq ($(TARGET_DEVICE),crespo)
     LOCAL_CFLAGS += -DTARGET_DEVICE_CRESPO
+endif
+
+ifeq ($(TARGET_DEVICE),ancora)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA
 endif
 
 include $(BUILD_SHARED_LIBRARY)

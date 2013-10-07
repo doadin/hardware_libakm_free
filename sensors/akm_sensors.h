@@ -42,4 +42,8 @@ extern struct akm_publisher akm8973_publisher;
 extern struct akm_sensor akm8973_magnetic_field;
 extern struct akm_sensor akm8973_orientation;
 
+/* bma */
+extern struct akm_chip_sensors bma;
+extern struct akm_sensor bma_accelerometer;
+
 #endif
