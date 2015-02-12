@@ -15,39 +15,37 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-BUILD_LIBAKM := true
-
-ifneq ($(BUILD_LIBAKM),)
 
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
+
+LOCAL_MODULE := libakm
+LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
+LOCAL_MODULE_TAGS := optional
+
+LOCAL_CFLAGS := -DLOG_TAG=\"libakm_free\"
+
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),ancora)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA
+endif
+
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),ancora_tmo)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA_TMO
+endif
+
+ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),apache)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_APACHE
+endif
 
 LOCAL_SRC_FILES := akm.c \
     sensors/akm8975.c \
     sensors/bma.c \
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
-LOCAL_CFLAGS := -DLOG_TAG=\"libakm_free\"
+
 LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_PRELINK_MODULE := false
 
-LOCAL_MODULE := libakm
-LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
-LOCAL_MODULE_TAGS := optional
-
-ifeq ($(TARGET_DEVICE),ancora)
-    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA
-endif
-
-ifeq ($(TARGET_DEVICE),ancora_tmo)
-    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA_TMO
-endif
-
-ifeq ($(TARGET_DEVICE),apache)
-    LOCAL_CFLAGS += -DTARGET_DEVICE_APACHE
-endif
-
 include $(BUILD_SHARED_LIBRARY)
 
-endif # BUILD_LIBAKM
