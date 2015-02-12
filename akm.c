@@ -37,7 +37,7 @@ struct akm_chip_sensors *akm_device_chips[]=
 #endif
 
 /* Device configuration for Apache. */
-#ifdef TARGET_DEVICE_APCHE
+#ifdef TARGET_DEVICE_APACHE
 struct akm_chip_sensors *akm_device_chips[]=
 {
 	&bma250,
