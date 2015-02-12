@@ -40,6 +40,14 @@ ifeq ($(TARGET_DEVICE),ancora)
     LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA
 endif
 
+ifeq ($(TARGET_DEVICE),ancora_tmo)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA_TMO
+endif
+
+ifeq ($(TARGET_DEVICE),apache)
+    LOCAL_CFLAGS += -DTARGET_DEVICE_APACHE
+endif
+
 include $(BUILD_SHARED_LIBRARY)
 
 endif # BUILD_LIBAKM
