@@ -32,18 +32,19 @@
 int default_enable(struct akm_sensor *sensor);
 int default_disable(struct akm_sensor *sensor);
 
-/* kr3dm */
-extern struct akm_chip_sensors kr3dm;
-extern struct akm_sensor kr3dm_accelerometer;
 
-/* akm8973 */
+/* akm8975 */
 extern struct akm_chip_sensors akm8973;
 extern struct akm_publisher akm8973_publisher;
 extern struct akm_sensor akm8973_magnetic_field;
 extern struct akm_sensor akm8973_orientation;
 
-/* bma */
-extern struct akm_chip_sensors bma;
-extern struct akm_sensor bma_accelerometer;
+/* bma222 */
+extern struct akm_chip_sensors bma222;
+extern struct akm_sensor bma222_accelerometer;
+
+/* bma250 */
+extern struct akm_chip_sensors bma250;
+extern struct akm_sensor bma250_accelerometer;
 
 #endif

@@ -26,46 +26,23 @@
 #include "akm.h"
 #include "sensors/akm_sensors.h"
 
-/* 
- * We define TARGET_DEFAULT to use the default device configuration.
- * It has to be undefined if another TARGET_DEVICE is specified.
- */
 
-#define TARGET_DEFAULT
-
-/* Device configuration for crespo (Google Nexus S). */
-#ifdef TARGET_DEVICE_CRESPO
-#undef TARGET_DEFAULT
-
+/* Device configuration for ancora (Samsung Galaxy W). */
+#ifdef TARGET_DEVICE_ANCORA || ifdef TARGET_DEVICE_ANCORA_TMO
 struct akm_chip_sensors *akm_device_chips[]=
 {
-	&kr3dm,
-	&akm8973
+	&bma222,
+	&akm8975
 };
-
 #endif
 
-/* Device configuration for ancora (GSamsung Galaxy W). */
-#ifdef TARGET_DEVICE_ANCORA
-#undef TARGET_DEFAULT
-
+/* Device configuration for Apache. */
+#ifdef TARGET_DEVICE_APCHE
 struct akm_chip_sensors *akm_device_chips[]=
 {
-	&bma,
-	&akm8973
+	&bma250,
+	&akm8975
 };
-
-#endif
-
-/* Default device configuration, used when the target is not specified. */
-#ifdef TARGET_DEFAULT
-
-struct akm_chip_sensors *akm_device_chips[]=
-{
-	&kr3dm,
-	&akm8973
-};
-
 #endif
 
 /* This function is called when the lib is dlopened. */

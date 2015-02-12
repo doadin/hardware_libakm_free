@@ -24,9 +24,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES := akm.c \
-    sensors/default.c \
-    sensors/akm8973.c \
-    sensors/kr3dm.c \
+    sensors/akm8975.c \
     sensors/bma.c \
 
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
@@ -37,10 +35,6 @@ LOCAL_PRELINK_MODULE := false
 LOCAL_MODULE := libakm
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)
 LOCAL_MODULE_TAGS := optional
-
-ifeq ($(TARGET_DEVICE),crespo)
-    LOCAL_CFLAGS += -DTARGET_DEVICE_CRESPO
-endif
 
 ifeq ($(TARGET_DEVICE),ancora)
     LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA

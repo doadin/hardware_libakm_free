@@ -27,11 +27,17 @@
 #include "akm.h"
 #include "sensors/akm_sensors.h"
 
-#define SENSOR_NAME	"bma"
+#ifdef TARGET_DEVICE_ANCORA || ifDEF TARGET_DEVICE_ANCORA_TMO
+#define SENSOR_NAME	"bma222"
+#endif
+
+#ifdef TARGET_DEVICE_APACHE
+#define SENSOR_NAME	"bma250"
+#endif
 
 /* 
  * Chip/sensor functions/structures definitions for the bma accelerometer 
- * chip. It uses the akm8973 publisher. 
+ * chip. It uses the akm8975 publisher. 
  */
 
 int bma_init(struct akm_chip_sensors *chip)
@@ -178,7 +184,7 @@ int bma_set_delay(struct akm_sensor *sensor_info, uint64_t delay)
 
 /* This is the structure for the kr3dm chip. */
 struct akm_chip_sensors bma = {
-	.publisher=&akm8973_publisher,
+	.publisher=&akm8975_publisher,
 	.sensors_count=1,
 	.sensors={
 		&bma_accelerometer
