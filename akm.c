@@ -28,7 +28,16 @@
 
 
 /* Device configuration for ancora (Samsung Galaxy W). */
-#ifdef TARGET_DEVICE_ANCORA || ifdef TARGET_DEVICE_ANCORA_TMO
+#ifdef TARGET_DEVICE_ANCORA
+struct akm_chip_sensors *akm_device_chips[]=
+{
+	&bma222,
+	&akm8975
+};
+#endif
+
+/* Device configuration for ancora (Samsung Galaxy Exhibit II 4G). */
+#ifdef TARGET_DEVICE_ANCORA_TMO
 struct akm_chip_sensors *akm_device_chips[]=
 {
 	&bma222,

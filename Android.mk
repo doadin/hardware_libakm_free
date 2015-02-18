@@ -26,15 +26,15 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_CFLAGS := -DLOG_TAG=\"libakm_free\"
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),ancora)
+ifeq ($(TARGET_DEVICE),ancora)
     LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA
 endif
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),ancora_tmo)
+ifeq ($(TARGET_DEVICE),ancora_tmo)
     LOCAL_CFLAGS += -DTARGET_DEVICE_ANCORA_TMO
 endif
 
-ifeq ($(TARGET_BOOTLOADER_BOARD_NAME),apache)
+ifeq ($(TARGET_DEVICE),apache)
     LOCAL_CFLAGS += -DTARGET_DEVICE_APACHE
 endif
 

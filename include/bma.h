@@ -30,7 +30,7 @@ struct bma_acceldata{
 };
 
 /* dev info */
-#define ACC_DEV_NAME "accelerometer"
+#define ACC_DEV_NAME "accelerometer_sensor"
 
 /* bma ioctl command label */
 #define BMA_IOCTL_BASE 'a'
